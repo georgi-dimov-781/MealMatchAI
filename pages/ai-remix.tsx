@@ -400,7 +400,7 @@ export default function AIRemix() {
 
           {suggestions.length === 0 && !loading && (
             <div className={styles.emptyState}>
-              <p>Enter your ingredients above and click "Generate AI Suggestions" to get started!</p>
+              <p>Enter your ingredients above and click &quot;Generate AI Suggestions&quot; to get started!</p>
             </div>
           )}
         </div>

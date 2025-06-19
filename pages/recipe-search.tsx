@@ -366,7 +366,7 @@ const RecipeSearch = () => {
             <div className={styles.emptyState}>
               <Search size={64} />
               <h2>Start by adding ingredients</h2>
-              <p>Add the ingredients you have available, and we'll find matching recipes for you!</p>
+              <p>Add the ingredients you have available, and we&apos;ll find matching recipes for you!</p>
             </div>
           )}
         </div>

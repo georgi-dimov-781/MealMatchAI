@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import Link from 'next/link';
 import { ChefHat, Search, Brain, Calendar, ShoppingCart, Package } from 'lucide-react';
@@ -54,7 +53,7 @@ export default function Home() {
             </p>
             <p className={styles.description}>
               Transform your available ingredients into delicious meals with AI-powered recipe suggestions. 
-              Never wonder "what's for dinner?" again!
+              Never wonder &quot;what&apos;s for dinner?&quot; again!
             </p>
           </div>
         </header>
