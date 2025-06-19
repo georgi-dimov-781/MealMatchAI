@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Clock, Users, Heart, ArrowLeft, Calendar, Plus, ChefHat } from 'lucide-react';
 import styles from '../../styles/Recipe.module.css';
 import { saveRecipe, saveMealPlan } from '../../lib/database';
+import { RecipeDetails } from '../../lib/spoonacular';
 
 const RecipePage = () => {
   const router = useRouter();
