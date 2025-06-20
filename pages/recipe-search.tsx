@@ -169,10 +169,8 @@ const RecipeSearch = () => {
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <Search size={32} />
-          <div>
-            <h1>Recipe Search</h1>
-            <p>Find delicious recipes using ingredients you already have</p>
-          </div>
+          <h1>Recipe Search</h1>
+          <p>Find delicious recipes using ingredients you already have</p>
         </div>
       </div>
 

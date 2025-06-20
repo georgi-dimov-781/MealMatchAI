@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,8 +10,10 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
+  defaultDropAnimationSideEffects,
 } from '@dnd-kit/core';
 import {
   arrayMove,
@@ -62,11 +63,14 @@ const SortableItem = ({ id, children }: { id: string; children: React.ReactNode 
     setNodeRef,
     transform,
     transition,
+    isDragging,
   } = useSortable({ id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    opacity: isDragging ? 0.5 : 1,
+    touchAction: 'none', // Prevents scrolling while trying to drag on touch devices
   };
 
   return (
@@ -96,7 +100,17 @@ const MealPlanner = () => {
   const [loading, setLoading] = useState(true);
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8, // 8px of movement required before drag starts
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250, // 250ms delay for touch devices
+        tolerance: 5, // 5px of movement allowed during delay
+      },
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -346,6 +360,12 @@ const MealPlanner = () => {
           collisionDetection={closestCenter}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
+          autoScroll={{
+            threshold: {
+              x: 0,
+              y: 0.2, // Start scrolling when 20% away from edge
+            },
+          }}
         >
           <div className={styles.calendar}>
             {weekDays.map(day => (
